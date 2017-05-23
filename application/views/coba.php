@@ -107,6 +107,8 @@
                 <h4>Subheading</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
                 <a class="btn btn-primary" href="#">View <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-warning" href="#">View <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-success" href="#">View <span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
         </div>
         <!-- /.row -->
@@ -125,6 +127,8 @@
                 <h4>Subheading</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, odit velit cumque vero doloremque repellendus distinctio maiores rem expedita a nam vitae modi quidem similique ducimus! Velit, esse totam tempore.</p>
                 <a class="btn btn-primary" href="#">View <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-warning" href="#">View <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-success" href="#">View <span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
         </div>
         <!-- /.row -->
@@ -143,6 +147,8 @@
                 <h4>Subheading</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, temporibus, dolores, at, praesentium ut unde repudiandae voluptatum sit ab debitis suscipit fugiat natus velit excepturi amet commodi deleniti alias possimus!</p>
                 <a class="btn btn-primary" href="#">View <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-warning" href="#">View <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-success" href="#">View <span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
         </div>
         <!-- /.row -->
@@ -162,6 +168,8 @@
                 <h4>Subheading</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, quidem, consectetur, officia rem officiis illum aliquam perspiciatis aspernatur quod modi hic nemo qui soluta aut eius fugit quam in suscipit?</p>
                 <a class="btn btn-primary" href="#">View <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-warning" href="#">View <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-success" href="#">View <span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
         </div>
         <!-- /.row -->
@@ -180,6 +188,8 @@
                 <h4>Subheading</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, quo, minima, inventore voluptatum saepe quos nostrum provident ex quisquam hic odio repellendus atque porro distinctio quae id laboriosam facilis dolorum.</p>
                 <a class="btn btn-primary" href="#">View <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-warning" href="#">View <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-success" href="#">View <span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
         </div>
         <!-- /.row -->
@@ -189,31 +199,14 @@
         <!-- Pagination -->
         <div class="row text-center">
             <div class="col-lg-12">
-                <ul class="pagination">
-                    <li>
-                        <a href="#">&laquo;</a>
-                    </li>
-                    <li class="active">
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">4</a>
-                    </li>
-                    <li>
-                        <a href="#">5</a>
-                    </li>
-                    <li>
-                        <a href="#">&raquo;</a>
-                    </li>
-                </ul>
+                <button type="button" class="btn btn-info" name="button">
+                  <i class=""></i> More
+                </button>
             </div>
         </div>
+
+        <br>
+
         <!-- /.row -->
 
         <!-- <hr> -->
@@ -264,7 +257,7 @@
 	 	</div><!--/container -->
 	 </div><!--/footerwrap -->
 
-    <script src="<?php echo base_url("assets/jquery/jquery.min.js") ?>"></script>
+    <script src="<?php echo base_url("assets/js/jquery.min.js") ?>"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo base_url("assets/js/bootstrap.min.js") ?>"></script>
     <script src="<?php echo base_url('assets/js/retina-1.1.0.js') ?>"></script>
@@ -273,6 +266,7 @@
     <script src="<?php echo base_url('assets/js/jquery.prettyPhoto.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery.isotope.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/custom.js') ?>"></script>
+
 
   </body>
 </html>
