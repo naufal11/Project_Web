@@ -6,6 +6,7 @@ class Post extends CI_Controller{
   public function __construct()
   {
     parent::__construct();
+    $this->load->model("Home_model","home_m");
     //Codeigniter : Write Less Do More
   }
 
@@ -67,13 +68,13 @@ class Post extends CI_Controller{
       $this->db->insert('lol_like_post', $data_response);
     }else {
       $this->db->where('intIdUser', $intIdUser)
+      ->where('intIdPost',$intIdPost)
       ->update("lol_like_post", $data_response);
     }
 
-    $data = $this->db->where("intIdPost", $intIdPost)
-    ->where("response", "1")
-    ->get("lol_like_post")->result_array();
-    echo json_encode(count($data));
+    $get_like = $this->home_m->get_query_post($intIdPost);
+    $data = $this->db->query($get_like)->row_array();
+    echo json_encode($data);
   }
 
 }

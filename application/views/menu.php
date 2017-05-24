@@ -24,9 +24,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">PAGES <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="#">BLOG</a></li>
-                <li><a href="#">SINGLE POST</a></li>
-                <li><a href="#">PORTFOLIO</a></li>
-                <li><a href="#">SINGLE PROJECT</a></li>
+                <li><a href="<?php echo site_url('users/logout') ?>">LOGOD</a></li>
               </ul>
             </li>
           </ul>

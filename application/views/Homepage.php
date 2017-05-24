@@ -72,11 +72,15 @@
       <h4><?php echo $lol_post['username'] ?></h4>
       <p><?php echo $lol_post['caption'] ?></p>
       <div class="btn btn-primary" onclick="response(<?php echo $lol_post['intIdPost'] ?>,1)">
-        <span class="fa fa-thumbs-o-up" id="like"></span> Lek
+        <span class="fa fa-thumbs-o-up" id="post_<?php echo $lol_post['intIdPost'] ?>_like"> <?php
+        $like = ($lol_post['likes']  != NULL) ? $lol_post['likes'] : 0;
+        echo $like ?></span>
       </div>
       <div class="btn btn-info"><span class="fa fa-comment"></span> Komen</div>
       <div class="btn btn-danger" onclick="response(<?php echo $lol_post['intIdPost'] ?>,0)">
-        <span class="fa fa-thumbs-o-down"></span> Dislek
+        <span class="fa fa-thumbs-o-down" id="post_<?php echo $lol_post['intIdPost'] ?>_dislike"> <?php
+        $dislike = ($lol_post['dislike'] != NULL) ? $lol_post['dislike'] : 0;
+        echo $dislike ?></span>
       </div>
     </div>
   </div>
@@ -118,7 +122,10 @@ function response(id, value) {
   function(data) {
     /*optional stuff to do after success */
     data = JSON.parse(data);
-    $("#like").html(" "+data);
+    dislike = (data.dislike == null) ? 0 : data.dislike;
+    like = (data.likes == null) ? 0 : data.likes;
+    $("#post_" + id + "_like").html(" " + like);
+    $("#post_" + id + "_dislike").html(" " + dislike);
   });
 }
 

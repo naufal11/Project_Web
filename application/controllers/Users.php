@@ -36,6 +36,7 @@ class Users extends CI_Controller{
         $this->session->logon = TRUE;
         redirect('home');
     } else {
+      $this->session->logon = FALSE;
       redirect('users/page_login');
     }
 
@@ -64,7 +65,12 @@ class Users extends CI_Controller{
     // do insert account here
     $this->db->insert('lol_user', $register_data);
     redirect('users/page_login');
+  }
 
+  public function logout()
+  {
+    $this->session->sess_destroy();
+    redirect('home');
   }
 
 }
