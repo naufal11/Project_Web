@@ -6,12 +6,15 @@ class Users extends CI_Controller{
   public function __construct()
   {
     parent::__construct();
-    //Codeigniter : Write Less Do More
+    // cek apakah telah login
+    $isLogon = $this->check_login->isLogin();
+    if ($isLogon) {
+      redirect("home/homepage");
+    }
   }
 
   function index()
   {
-
   }
 
   public function page_login()
@@ -47,9 +50,6 @@ class Users extends CI_Controller{
     // do insert account here
     // $this->db->insert('user', $register_data);
 
-    $register_data_photo = array(
-      '' => ,
-    );
 
   }
 

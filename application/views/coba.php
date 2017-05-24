@@ -1,24 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="Viewport" content="width=device-width, initial-scale=1">
-    <title>Coba</title>
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css") ?>">
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/font-awesome.min.css") ?>">
-
-    <!-- Custom styles for this template -->
-    <link href="<?php echo base_url('assets/css/style.css') ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/font-awesome.min.css') ?>" rel="stylesheet">
-
-    <script src="<?php echo base_url('assets/js/modernizr.js') ?>"></script>
-
-  </head>
-  <body>
-
+<?php $this->load->view('header_source'); ?>
+<body>
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -257,6 +238,7 @@
 	 	</div><!--/container -->
 	 </div><!--/footerwrap -->
 
+<<<<<<< HEAD
     <script src="<?php echo base_url("assets/js/jquery.min.js") ?>"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo base_url("assets/js/bootstrap.min.js") ?>"></script>
@@ -266,6 +248,9 @@
     <script src="<?php echo base_url('assets/js/jquery.prettyPhoto.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery.isotope.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/custom.js') ?>"></script>
+=======
+<?php $this->load->view('footer'); ?>
+>>>>>>> Commit from deva
 
 
   </body>
