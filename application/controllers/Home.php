@@ -23,8 +23,16 @@ class Home extends CI_Controller{
 
   function Homepage()
   {
-    $data['menu'] = "homepage";
+    $data['menu']     = "timeline";
+    $data['lol_posts'] = $this->db->join("lol_user","lol_user.intIdUser = lol_post.intIdUser")
+    ->get('lol_post')
+    ->result_array();
     $this->load->view('homepage',$data);
+  }
+
+  public function my_post()
+  {
+
   }
 
 }
