@@ -26,14 +26,16 @@ CREATE TABLE `lol_like_post` (
   `intIdUser` bigint(20) NOT NULL,
   `response` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`intIdLike`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `lol_like_post` */
 
 LOCK TABLES `lol_like_post` WRITE;
 
 insert  into `lol_like_post`(`intIdLike`,`intIdPost`,`intIdUser`,`response`) values 
-(1,1,3,1);
+(1,1,3,1),
+(5,1,4,0),
+(7,2,4,0);
 
 UNLOCK TABLES;
 
@@ -51,14 +53,15 @@ CREATE TABLE `lol_post` (
   `mark` varchar(25) DEFAULT NULL,
   `heading` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`intIdPost`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `lol_post` */
 
 LOCK TABLES `lol_post` WRITE;
 
 insert  into `lol_post`(`intIdPost`,`title`,`caption`,`file`,`dtmDate`,`intIdUser`,`mark`,`heading`) values 
-(1,'asd','asdasd','BusinessmanView1.png','2017-05-24 20:19:54',3,'goodboy','New Style Broh');
+(1,'asd','asdasd','BusinessmanView1.png','2017-05-24 20:19:54',3,'goodboy','New Style Broh'),
+(2,'Mantan Gelis Ah','This is very very waw but nothing happen and crazy words.','1452504805353.jpg','2017-05-24 20:36:28',4,'Happy Fun','Galau Style');
 
 UNLOCK TABLES;
 
@@ -77,14 +80,15 @@ CREATE TABLE `lol_user` (
   `isActive` tinyint(1) DEFAULT NULL,
   `last_log` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`intIdUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `lol_user` */
 
 LOCK TABLES `lol_user` WRITE;
 
 insert  into `lol_user`(`intIdUser`,`username`,`firstname`,`lastname`,`email`,`password`,`gender`,`isActive`,`last_log`) values 
-(3,'admin','admin','a','admin@gmail.com','4297f44b13955235245b2497399d7a93',1,0,'2017-05-24 00:00:00');
+(3,'admin','admin','a','admin@gmail.com','4297f44b13955235245b2497399d7a93',1,0,'2017-05-24 00:00:00'),
+(4,'cukai','cuk','ai','cukai@gmail.com','4297f44b13955235245b2497399d7a93',1,0,'2017-05-24 00:00:00');
 
 UNLOCK TABLES;
 
