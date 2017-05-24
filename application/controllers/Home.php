@@ -8,17 +8,17 @@ class Home extends CI_Controller{
     parent::__construct();
 
     // cek apakah telah login
-    $isLogon = $this->check_login->isLogin();
-    if ($isLogon) {
-      redirect("home/homepage");
-    }else {
-      redirect('users/page_login');
-    }
+    // $isLogon = $this->session->logon;
+    // if ($isLogon) {
+    //   redirect("home/");
+    // }else {
+    //   redirect('users/page_login');
+    // }
   }
 
   public function index()
   {
-    
+    $this->homepage();
   }
 
   function Homepage()

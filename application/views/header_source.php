@@ -14,5 +14,4 @@
     <link href="<?php echo base_url('assets/css/style.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/font-awesome.min.css') ?>" rel="stylesheet">
 
-    <script src="<?php echo base_url('assets/js/modernizr.js') ?>"></script>
 </head>

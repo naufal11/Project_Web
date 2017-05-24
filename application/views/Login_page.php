@@ -17,11 +17,11 @@
               <form class="form-horizontal" action="<?php echo site_url('users/do_login') ?>" method="post">
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="email" class="form-control" id="email" placeholder="Your Email ...">
+                  <input type="email" class="form-control" id="email" placeholder="Your Email ..." name="email">
                 </div>
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <input type="password" class="form-control" id="password" placeholder="Your Password ...">
+                  <input type="password" class="form-control" id="password" placeholder="Your Password ..." name="password">
                 </div>
                 <div class="btn-group btn-group-sm pull-right">
                   <a href="<?php echo site_url('users/page_register') ?>" class="btn btn-warning btn-sm">

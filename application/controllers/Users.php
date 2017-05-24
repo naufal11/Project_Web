@@ -7,10 +7,11 @@ class Users extends CI_Controller{
   {
     parent::__construct();
     // cek apakah telah login
-    $isLogon = $this->check_login->isLogin();
-    if ($isLogon) {
-      redirect("home/homepage");
-    }
+    // $isLogon = $this->check_login->isLogin();
+    // if ($isLogon) {
+    //   redirect("home/homepage");
+    // }
+    $this->load->model('users_model');
   }
 
   function index()
@@ -27,6 +28,17 @@ class Users extends CI_Controller{
   {
     $email = $this->input->post('email');
     $password = md5($this->input->post('password'));
+    $cek = $this->users_model->cek_login($email, $password);
+    // var_dump($cek);
+    // die;
+    if ($cek) {
+        $this->session->set_userdata($cek);
+        $this->session->logon = TRUE;
+        redirect('home');
+    } else {
+      redirect('users/page_login');
+    }
+
     echo "$email $password";
   }
 
@@ -38,18 +50,20 @@ class Users extends CI_Controller{
 
   public function do_register()
   {
+    $password = md5($this->input->post('password'));
     $register_data = array(
       'username' => $this->input->post('username'),
+      'firstname' => $this->input->post('firstname'),
+      'lastname' => $this->input->post('lastname'),
       'email' => $this->input->post('email'),
-      'password' => $this->input->post('password'),
-      'date_birth' => $this->input->post('date_birth'),
+      'password' => $password,
       'gender' => $this->input->post('gender'),
       'isActive' => 0,
       'last_log' => date("Y-m-d")
     );
     // do insert account here
-    // $this->db->insert('user', $register_data);
-
+    $this->db->insert('lol_user', $register_data);
+    redirect('users/page_login');
 
   }
 
