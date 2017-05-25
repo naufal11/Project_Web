@@ -91,8 +91,8 @@ CREATE TABLE `lol_user` (
 LOCK TABLES `lol_user` WRITE;
 
 insert  into `lol_user`(`intIdUser`,`username`,`firstname`,`lastname`,`email`,`password`,`gender`,`isActive`,`last_log`,`image_profile`,`bio`) values 
-(3,'admin','admin','a','admin@gmail.com','4297f44b13955235245b2497399d7a93',1,0,'2017-05-24 00:00:00',NULL,NULL),
-(4,'cukai','cuk','ai','cukai@gmail.com','4297f44b13955235245b2497399d7a93',1,0,'2017-05-24 00:00:00',NULL,NULL),
+(3,'admin','admin','a','admin@gmail.com','4297f44b13955235245b2497399d7a93',1,0,'2017-05-25 18:56:59',NULL,'ane cuma bio'),
+(4,'cukai','cuk','ai','cukai@gmail.com','4297f44b13955235245b2497399d7a93',1,0,'2017-05-25 18:57:09',NULL,'bukan bio biasa'),
 (5,'KUy76','As','em','asemjawa@gmail.com','f26d9bf4d4af8870fc1def217c8d1ae7',1,0,'2017-05-25 00:00:00',NULL,NULL);
 
 UNLOCK TABLES;
