@@ -14,7 +14,55 @@
                       <div class="hline"></div>
                       <br>
                         <div align="center">
-                            <img class="thumbnail img-responsive" src="<?php echo base_url('/assets/user.png') ?>" width="300px" height="300px">
+                            <img id="my_foto" class="thumbnail img-responsive" src="<?php
+
+                            $img = $this->session->userdata['user']['image_profile'];
+
+                            $fm = ($this->session->userdata['user']['gender'] == 1) ? "male" : "female" ;
+
+                            $imgSource= ($img == NULL) ? base_url('/assets/img/profile/' . $fm . ".png") : $img ;
+
+                            echo $imgSource;
+
+                            ?>" width="300px" height="300px">
+                        </div>
+                        <div class="pull-right">
+                          <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#My_photo">
+                            Change
+                          </button>
+
+                          <!-- modal here -->
+                          <div class="modal fade" id="My_photo" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                  <h4 class="modal-title" id=""></h4>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="col-sm-12">
+
+                                  <div class="form-horizontal">
+                                    <div class="form-group">
+                                      <label for="Potos">Mai Potos</label>
+                                      <input type="file" placeholder="" name="file_photo" id="photo_file">
+                                      <p class="help-block">Pake file aje.</p>
+                                    </div>
+                                    <div class="form-group">
+                                      <input type="text" class="form-control" placeholder="" name="url_photo" id="url_file" multiple>
+                                      <p class="help-block">Gapunya imeg pake url aje.</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Kensel</button>
+                                  <button type="button" class="btn btn-primary" onclick="changeImage()" data-dismiss="modal">Sep</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
                         </div>
                         <div class="media-body">
                             <h2><?php echo $this->session->userdata['user']['firstname']." ".$this->session->userdata['user']['lastname']; ?></h2>
@@ -22,7 +70,7 @@
                             <hr>
                             <h3><strong>Bio</strong></h3>
                             <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel gravida metus, non ultrices sapien. Morbi odio metus, dapibus non nibh id amet.
+                              <?php echo $this->session->userdata['user']['bio'] ?>
                               <a href="#" class="fa fa-pencil-square-o"></a>
                             </p>
                             <hr>
@@ -39,6 +87,9 @@
                             <hr>
                             <h3><strong>E-mail</strong></h3>
                             <p><?php echo $this->session->userdata['user']['email']; ?></p>
+                            <h3><strong>Last Logout</strong></h3>
+                            <p><?php echo date_format(date_create($this->session->userdata['user']['last_log']),"D,d m Y") ?></p>
+                            <p><?php echo date_format(date_create($this->session->userdata['user']['last_log']),"H:i A") ?></p>
                             <hr>
                             <div class="text-center">
                               <h5><a href="#"><strong><u>Change Profile</u></strong></a></h5>
@@ -107,3 +158,39 @@
 </div>
 
 <?php $this->load->view('footer'); ?>
+<script type="text/javascript">
+function changeImage() {
+  var file = $("#photo_file");
+  var items = file[0].files;
+  var fileName = items[0].name; // get file name
+
+  var url = $("#url_file").val();
+
+  var photo = (file == null) ? url : fileName ;
+
+  var use_url = (url == null) ? "<?php echo base_url('assets/img/') ?>" + url : photo ;
+  $.ajax({
+    url     : "<?php echo site_url('users/edit_photo_profile') ?>",
+    type    : "POST",
+    dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+    data    : {
+      "file_name" : photo
+    },
+    success : function () {
+      $("#my_foto").attr('src', use_url );
+    }
+    })
+  .done(function() {
+    console.log("success");
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+
+
+
+}
+</script>

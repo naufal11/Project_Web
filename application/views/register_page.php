@@ -52,12 +52,10 @@
                 <div class="form-group">
                   <label for="bio">Bio</label>
                   <textarea name="bio" style="width:100%" class="form-control" placeholder="Bio"></textarea>
-                  <p class="help-block">Help text here.</p>
                 </div>
                 <div class="form-group">
                   <label for="password">Password</label>
                   <input type="password" class="form-control" id="inputPassword" data-minlength="6"  placeholder="Your Password ..." name="password" required>
-        <div class="help-block">Minimum of 6 characters</div>
                   <input type="password" class="form-control" id="password2" placeholder="Confirm Password ..." name="password2" data-match="#inputPassword" data-match-error="Whoops, these don't match" required>
                 </div>
                 <div class="btn-group btn-group-sm pull-right">

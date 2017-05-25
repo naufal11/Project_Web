@@ -28,7 +28,9 @@ class Users extends CI_Controller{
   {
     $email = $this->input->post('email');
     $password = md5($this->input->post('password'));
+
     $cek = $this->users_model->cek_login($email, $password);
+
     if ($cek) {
         $this->session->set_userdata($cek);
 
@@ -36,10 +38,10 @@ class Users extends CI_Controller{
         $this->db->where('email', $email)
         ->update('lol_user',$user);
 
-        $this->session->logon = TRUE;
+        $this->session->logon = 1;
         redirect('home');
     } else {
-      $this->session->logon = FALSE;
+      $this->session->logon = 0;
       redirect('users/page_login');
     }
 
@@ -62,21 +64,21 @@ class Users extends CI_Controller{
 
     if ($emailAble) {
       $register_data = array(
-        'username' => $this->input->post('username'),
+        'username'  => $this->input->post('username'),
         'firstname' => $this->input->post('firstname'),
-        'lastname' => $this->input->post('lastname'),
-        'email' => $email,
-        'password' => $password,
-        'gender' => $this->input->post('gender'),
-        'bio' => $this->input->post('bio'),
-        'isActive' => 0,
-        'last_log' => date("Y-m-d")
+        'lastname'  => $this->input->post('lastname'),
+        'email'     => $email,
+        'password'  => $password,
+        'gender'    => $this->input->post('gender'),
+        'bio'       => $this->input->post('bio'),
+        'isActive'  => 0,
+        'last_log'  => date("Y-m-d")
       );
       // do insert account here
       $this->db->insert('lol_user', $register_data);
       redirect('users/page_login');
     }else {
-      redirect('users/register_page');
+      redirect('users/page_register');
     }
   }
 
@@ -84,10 +86,24 @@ class Users extends CI_Controller{
   {
     $user['isActive'] = 0;
     $user['last_log'] = date("Y-m-d H:i:s");
+
+    $email = $this->session->userdata['user']['email'];
+
     $this->db->where('email', $email)
     ->update('lol_user',$user);
+
     $this->session->sess_destroy();
     redirect('home');
+  }
+
+  public function edit_photo_profile()
+  {
+    $data['image_profile'] = $this->input->post('file_name');
+    
+    $intIdUser = $this->session->userdata['user']['intIdUser'];
+
+    $this->db->where('intIdUser', $intIdUser)
+    ->update("lol_user", $data);
   }
 
 }
