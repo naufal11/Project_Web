@@ -13,6 +13,8 @@ class Profile extends CI_Controller{
   function index()
   {
     $data['menu'] = 'my_profile';
+    $queryMyPost = $this->home_m->get_my_post_query();
+    $data['my_post'] = $this->db->query($queryMyPost)->result_array();
     $this->load->view('my_profile', $data);
   }
 
