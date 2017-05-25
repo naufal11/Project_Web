@@ -29,7 +29,9 @@ class Home extends CI_Controller{
 
   public function my_post()
   {
-
+    $queryMyPost = $this->home_m->get_my_post_query();
+    $data['lol_posts'] = $this->db->query($queryMyPost)->result_array();
+    $this->load->view('homepage',$data);
   }
 
 }
