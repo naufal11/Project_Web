@@ -86,8 +86,10 @@ class Home_model extends CI_Model{
     return $query;
   }
 
-  public function get_limit_post($offset , $limit)
+  public function get_limit_post($my ,$offset , $limit)
   {
+    $intIdUser = $this->session->userdata['user']['intIdUser'];
+    $where = ($my != '') ? "WHERE lol_post.`intIdUser` = '$intIdUser'" : "" ;
     $query = "SELECT lol_post.*,
     dislikes.`dislike`,
     lol_user.`username`,
@@ -106,6 +108,7 @@ class Home_model extends CI_Model{
       GROUP BY intIdPost
     ) dislikes
     ON dislikes.`intIdPost` = lol_post.`intIdPost`
+    $where
     GROUP BY lol_post.`intIdPost`
     LIMIT $offset, $limit";
     return $query;

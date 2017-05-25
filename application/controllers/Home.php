@@ -32,15 +32,15 @@ class Home extends CI_Controller{
     $data['menu'] = 'my_post';
     $queryMyPost = $this->home_m->get_my_post_query();
     $data['lol_posts'] = $this->db->query($queryMyPost)->result_array();
-    $data['menu'] = 'my_profile';
     $this->load->view('homepage',$data);
   }
 
-  public function get_content_load_more()
+  public function get_content_load_more($my = '')
   {
+    $my = ($my == 'timeline') ? '' : $my;
     $offset = $this->input->get('offset');
     $limit  = $this->input->get('limit');
-    $queryLimitPost = $this->home_m->get_limit_post($offset, $limit);
+    $queryLimitPost = $this->home_m->get_limit_post($my,$offset, $limit);
     $data['lol_posts'] = $this->db->query($queryLimitPost)->result_array();
     $this->load->view('load_more', $data);
   }

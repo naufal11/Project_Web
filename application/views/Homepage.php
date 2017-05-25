@@ -6,43 +6,43 @@
 <div class="container">
   <!-- Page Heading -->
 
-<!-- Here will be load -->
-<div id="homepage">
-  <!-- End of load more -->
-</div>
-<div id="loading">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="text-center">
-        <img src="<?php echo base_url('assets/img/loading2.gif') ?>" width="100px" height="50">
+  <!-- Here will be load -->
+  <div id="homepage">
+    <!-- End of load more -->
+  </div>
+  <div id="loading">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center">
+          <img src="<?php echo base_url('assets/img/loading2.gif') ?>" width="100px" height="50">
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div id="noable">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="text-center">
-        <label>
-          Not ebel eni pos egen !
-        </label>
+  <div id="noable">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center">
+          <label>
+            Not ebel eni pos egen !
+          </label>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Pagination -->
-<div class="row text-center">
-  <div class="col-lg-12">
-    <button type="button" class="btn btn-info" name="button" onclick="loadMore()">
-      <i class="fa fa-refresh"></i> Lod Mor
-    </button>
+  <!-- Pagination -->
+  <div class="row text-center">
+    <div class="col-lg-12">
+      <button type="button" class="btn btn-info" name="button" onclick="loadMore()">
+        <i class="fa fa-refresh"></i> Lod Mor
+      </button>
+    </div>
   </div>
-</div>
 
-<br>
+  <br>
 
-<!-- /.row -->
+  <!-- /.row -->
 
 </div>
 <!-- /.container -->
@@ -79,30 +79,39 @@ $(document).ready(function() {
   });
 });
 
+var noable = "ada";
 function loadMore() {
+
   $("#loading").show('fast');
-  $.ajax({
-    url: "<?php echo site_url('home/get_content_load_more') ?>",
-    type: 'GET',
-    data: {
-      'offset' : loadCount,
-      'limit'  : 3
-    },
-    success :function(data){
-      $("#loading").hide('fast');
-      $("#homepage").append(data);
-    }}
-  )
-  .done(function() {
-    console.log("success");
-  })
-  .fail(function() {
-    console.log("error");
-  })
-  .always(function() {
-    console.log("complete");
-  });
-  loadCount += 3;
+
+  if (noable != "") {
+    $.ajax({
+      url: "<?php echo site_url('home/get_content_load_more').'/'.$menu ?>",
+      type: 'GET',
+      data: {
+        'offset' : loadCount,
+        'limit'  : 3
+      },
+      success :function(data){
+        $("#loading").hide('fast');
+        $("#homepage").append(data);
+        noable = (data == null) ? "" : "able";
+        if (loadCount != 3) {
+          $(window).scrollTop($(document).height() - 1000);
+        }
+      }}
+    )
+    .done(function() {
+      console.log("success");
+    })
+    .fail(function() {
+      console.log("error");
+    })
+    .always(function() {
+      console.log("complete");
+    });
+    loadCount += 3;
+  }
 }
 
 </script>
