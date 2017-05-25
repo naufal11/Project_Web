@@ -37,6 +37,7 @@
               <!-- Menu Body -->
               <li class="user-footer">
                   <a href="<?php echo site_url('profile/')?>" class="btn btn-info btn-flat">MAI PROPIL</a>
+                  <a href="<?php echo site_url('profile/edit_profile')?>" class="btn btn-warning btn-flat">EDIT PROPIL</a>
                   <a href="<?php echo site_url('users/logout') ?>" class="btn btn-danger btn-flat">LOGOD</a>
               </li>
             </ul>

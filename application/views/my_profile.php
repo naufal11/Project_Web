@@ -26,9 +26,6 @@
                               <a href="#" class="fa fa-pencil-square-o"></a>
                             </p>
                             <hr>
-                            <h3><strong>E-mail</strong></h3>
-                            <p><?php echo $this->session->userdata['user']['email']; ?></p>
-                            <hr>
                             <h3><strong>Gender</strong></h3>
                             <p>
                               <?php
@@ -40,11 +37,11 @@
                               ?>
                             </p>
                             <hr>
-                            <h3><strong>Birthday</strong></h3>
-                            <p>January 01 1901</p>
+                            <h3><strong>E-mail</strong></h3>
+                            <p><?php echo $this->session->userdata['user']['email']; ?></p>
                             <hr>
                             <div class="text-center">
-                              <h5><a href="#"><strong><u>Setting Profile</u></strong></a></h5>
+                              <h5><a href="#"><strong><u>Change Profile</u></strong></a></h5>
                             </div>
                         </div>
                     </div>

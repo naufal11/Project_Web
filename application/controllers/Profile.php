@@ -18,4 +18,10 @@ class Profile extends CI_Controller{
     $this->load->view('my_profile', $data);
   }
 
+  function edit_profile()
+  {
+    $data['menu'] = 'edit_profile';
+    $this->load->view('change_profile', $data);
+  }
+
 }
