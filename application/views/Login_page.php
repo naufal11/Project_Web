@@ -28,7 +28,7 @@
                     Register
                   </a>
                   <button type="submit" class="btn btn-primary btn-sm">
-                    Submit
+                    Log in
                   </button>
                 </div>
               </form>

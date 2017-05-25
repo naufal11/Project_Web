@@ -37,7 +37,7 @@
               <!-- Menu Body -->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="<?php echo site_url('home/my_profile')?>" class="btn btn-info btn-flat">MAI PROPIL</a>
+                  <a href="<?php echo site_url('profile/')?>" class="btn btn-info btn-flat">MAI PROPIL</a>
                 </div>
                 <div class="pull-right">
                   <a href="<?php echo site_url('users/logout') ?>" class="btn btn-danger btn-flat">LOGOD</a>
