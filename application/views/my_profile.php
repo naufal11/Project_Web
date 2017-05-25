@@ -161,14 +161,19 @@
 <script type="text/javascript">
 function changeImage() {
   var file = $("#photo_file");
-  var items = file[0].files;
-  var fileName = items[0].name; // get file name
+  var items;
+  var fileName;
+  // if (file != null) {
+  //   items = file[0].files;
+  //   fileName = items[0].name;
+  // }
 
   var url = $("#url_file").val();
 
   var photo = (file == null) ? url : fileName ;
 
-  var use_url = (url == null) ? "<?php echo base_url('assets/img/') ?>" + url : photo ;
+  var use_url = (url == null) ? "<?php echo base_url('assets/img/') ?>" + fileName : url ;
+  $("#my_foto").attr('src', use_url );
   $.ajax({
     url     : "<?php echo site_url('users/edit_photo_profile') ?>",
     type    : "POST",
@@ -177,7 +182,6 @@ function changeImage() {
       "file_name" : photo
     },
     success : function () {
-      $("#my_foto").attr('src', use_url );
     }
     })
   .done(function() {
