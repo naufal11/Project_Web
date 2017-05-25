@@ -86,4 +86,29 @@ class Home_model extends CI_Model{
     return $query;
   }
 
+  public function get_limit_post($offset , $limit)
+  {
+    $query = "SELECT lol_post.*,
+    dislikes.`dislike`,
+    lol_user.`username`,
+    SUM(lol_like_post.`response`) as `likes`
+    FROM lol_post
+    JOIN lol_user
+    ON lol_user.`intIdUser` = lol_post.`intIdUser`
+    LEFT JOIN lol_like_post
+    ON lol_like_post.`intIdPost` = lol_post.`intIdPost`
+    LEFT JOIN (
+      SELECT
+      intIdPost,
+      COUNT(response) AS `dislike`
+      FROM lol_like_post
+      WHERE response = '0'
+      GROUP BY intIdPost
+    ) dislikes
+    ON dislikes.`intIdPost` = lol_post.`intIdPost`
+    GROUP BY lol_post.`intIdPost`
+    LIMIT $offset, $limit";
+    return $query;
+  }
+
 }
