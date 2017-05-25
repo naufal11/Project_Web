@@ -60,7 +60,7 @@ class Home_model extends CI_Model{
 
   public function get_my_post_query()
   {
-    $intIdUser = $this->session->['user']['intIdUser'];
+    $intIdUser = $this->session->userdata['user']['intIdUser'];
 
     $query = "SELECT lol_post.*,
     dislikes.`dislike`,
