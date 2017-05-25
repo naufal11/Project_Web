@@ -47,3 +47,49 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
+
+    <div class="row">
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+
+          <?php echo form_open_multipart('post/post_do');?>
+
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Pos Mai Lol</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="title" class="control-label">Titel:</label>
+                <input type="text" class="form-control" id="title" name="title" required placeholder="Titel gaol ...">
+              </div>
+              <div class="form-group">
+                <label for="heading" class="control-label">Hiding:</label>
+                <input type="text" class="form-control" id="heading" name="heading" placeholder="pake hiding kudu ..." required="">
+              </div>
+              <div class="form-group">
+                <label for="mark" class="control-label">Mark:</label>
+                <input type="text" class="form-control" id="mark" name="mark" placeholder="Mark aja kalo mao ...">
+              </div>
+              <div class="form-group">
+                <label for="caption" class="control-label">Kepsion:</label>
+                <textarea class="form-control" id="caption" name="caption" style="width:100%" placeholder="harusnya pake penjelasan ..."></textarea>
+              </div>
+              <div class="form-group">
+                <label for="File">Potos:</label>
+                <input type="file" id="File" name="userfile">
+                <input type="text" class="form-control" name="name_url" placeholder="pake url kalo ga punya imeg ye ...">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Klos</button>
+              <button type="Submit" class="btn btn-primary">Lol</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
