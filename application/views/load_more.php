@@ -20,7 +20,22 @@
       </div>
       <div class="col-md-5">
         <h3><?php echo $lol_post['title'] ?></h3>
-        <h4><?php echo $lol_post['username'] ?></h4>
+        <h4>
+          <div class="pull-left">
+
+            <img id="my_foto" class="thumbnail img-responsive" src="<?php
+
+            $img = $this->session->userdata['user']['image_profile'];
+
+            $fm = ($this->session->userdata['user']['gender'] == 1) ? "male" : "female" ;
+
+            $imgSource= ($img == NULL) ? base_url('/assets/img/profile/' . $fm . ".png") : $img ;
+
+            echo $imgSource;
+
+            ?>" width="50px" height="50px">
+          </div>
+          <?php echo $lol_post['username'] ?></h4>
         <p><?php echo $lol_post['caption'] ?></p>
         <div class="btn btn-primary" onclick="response(<?php echo $lol_post['intIdPost'] ?>,1)">
           <span class="fa fa-thumbs-o-up" id="post_<?php echo $lol_post['intIdPost'] ?>_like"> <?php
