@@ -34,9 +34,11 @@
   <!-- Pagination -->
   <div class="row text-center">
     <div class="col-lg-12">
-      <button type="button" class="btn btn-info" name="button" onclick="loadMore()">
-        <i class="fa fa-refresh"></i> Lod Mor
-      </button>
+      <div class="text-center">
+        <label>
+          <i class="fa fa-refresh"></i> Lod Mor
+        </label>
+      </div>
     </div>
   </div>
 
@@ -59,9 +61,9 @@ function response(id, value) {
   },
   function(data) {
     /*optional stuff to do after success */
-    data = JSON.parse(data);
-    dislike = (data.dislike == null) ? 0 : data.dislike;
-    like = (data.likes == null) ? 0 : data.likes;
+    data    = JSON.parse(data);
+    dislike = (data.dislike = = null) ? 0 : data.dislike;
+    like    = (data.likes   = = null) ? 0 : data.likes;
     $("#post_" + id + "_like").html(" " + like);
     $("#post_" + id + "_dislike").html(" " + dislike);
   });
@@ -81,9 +83,7 @@ $(document).ready(function() {
 
 var noable = "ada";
 function loadMore() {
-
   $("#loading").show('fast');
-
   if (noable != "") {
     $.ajax({
       url: "<?php echo site_url('home/get_content_load_more').'/'.$menu ?>",
@@ -96,6 +96,7 @@ function loadMore() {
         $("#loading").hide('fast');
         $("#homepage").append(data);
         noable = (data == null) ? "" : "able";
+        $("#noable").hide('fast');
         if (loadCount != 3) {
           $(window).scrollTop($(document).height() - 1000);
         }
@@ -111,7 +112,22 @@ function loadMore() {
       console.log("complete");
     });
     loadCount += 3;
+  }else {
+    $("#noable").show('fast');
   }
+}
+
+function load_comments(ID, id_ = "") {
+  id_ = document.getElementById(id_);
+  var commentText = "";
+  if (id_ != null) {
+    commentText = id_.value;
+  }
+  $("#comments_load_" + ID).load("<?php echo site_url("post/load_comments") ?>",{
+    "intIdPost" : ID,
+    "comment"   : commentText
+  });
+  id_.value = "";
 }
 
 </script>

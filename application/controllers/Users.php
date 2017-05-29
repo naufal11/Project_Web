@@ -26,20 +26,19 @@ class Users extends CI_Controller{
 
   public function do_login()
   {
-    $email = $this->input->post('email');
+    $email    = $this->input->post('email');
     $password = md5($this->input->post('password'));
-
-    $cek = $this->users_model->cek_login($email, $password);
+    $cek      = $this->users_model->cek_login($email, $password);
 
     if ($cek) {
-        $this->session->set_userdata($cek);
+      $this->session->set_userdata($cek);
 
-        $user['isActive'] = 1;
-        $this->db->where('email', $email)
-        ->update('lol_user',$user);
+      $user['isActive'] = 1;
+      $this->db->where('email', $email)
+      ->update('lol_user',$user);
 
-        $this->session->logon = 1;
-        redirect('home');
+      $this->session->logon = 1;
+      redirect('home');
     } else {
       $this->session->logon = 0;
       redirect('users/page_login');
@@ -62,7 +61,7 @@ class Users extends CI_Controller{
     $emailAble = $this->db->get_where('lol_user', "email = '$email'")
     ->row_array();
 
-    if ($emailAble) {
+    if ($emailAble['email'] == "") {
       $register_data = array(
         'username'  => $this->input->post('username'),
         'firstname' => $this->input->post('firstname'),
@@ -70,9 +69,8 @@ class Users extends CI_Controller{
         'email'     => $email,
         'password'  => $password,
         'gender'    => $this->input->post('gender'),
-        'bio'       => $this->input->post('bio'),
         'isActive'  => 0,
-        'last_log'  => date("Y-m-d")
+        'last_log'  => date("Y-m-d H:i:s")
       );
       // do insert account here
       $this->db->insert('lol_user', $register_data);
@@ -96,14 +94,45 @@ class Users extends CI_Controller{
     redirect('home');
   }
 
-  public function edit_photo_profile()
+  public function get_file_name()
   {
-    $data['image_profile'] = $this->input->post('file_name');
-    
-    $intIdUser = $this->session->userdata['user']['intIdUser'];
+    $config['upload_path']          = 'assets/img/profile';
+    $config['allowed_types']        = 'gif|jpg|png';
+    $config['encrypt_name']         = TRUE;
+    $config['max_size']             = 100000;
+    $config['max_width']            = 1024;
+    $config['max_height']           = 768;
 
+    $this->load->library('upload', $config);
+    $upload = $this->upload->do_upload('file_name');
+    if ($upload != NULL) {
+      if ( ! $upload)
+      {
+        $error = array('error' => $this->upload->display_errors());
+        var_dump($error);
+      }
+      else
+      {
+        $upload_data = $this->upload->data(); //Returns array of containing all of the data related to the file you uploaded.
+        $file_name   = $upload_data['file_name'];
+        return $file_name;
+      }
+    }else {
+      $file_name = $this->input->post('file_url');
+      return $file_name;
+    }
+  }
+
+  public function edit_photo_profile( $remove = FALSE )
+  {
+    $intIdUser = $this->session->userdata['user']['intIdUser'];
+    $data['image_profile'] = (!$remove) ? $this->get_file_name() : NULL;
+
+    $this->session->userdata['user']['image_profile'] = $data['image_profile'];
     $this->db->where('intIdUser', $intIdUser)
     ->update("lol_user", $data);
+    redirect('profile');
+
   }
 
 }

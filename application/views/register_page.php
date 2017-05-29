@@ -50,10 +50,6 @@
                   <input type="email" class="form-control" id="email" placeholder="Your Email ..." name="email" data-error="Bruh, that email address is invalid" required>
                 </div>
                 <div class="form-group">
-                  <label for="bio">Bio</label>
-                  <textarea name="bio" style="width:100%" class="form-control" placeholder="Bio"></textarea>
-                </div>
-                <div class="form-group">
                   <label for="password">Password</label>
                   <input type="password" class="form-control" id="inputPassword" data-minlength="6"  placeholder="Your Password ..." name="password" required>
                   <input type="password" class="form-control" id="password2" placeholder="Confirm Password ..." name="password2" data-match="#inputPassword" data-match-error="Whoops, these don't match" required>

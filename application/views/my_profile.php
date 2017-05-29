@@ -20,13 +20,14 @@
 
                             $fm = ($this->session->userdata['user']['gender'] == 1) ? "male" : "female" ;
 
-                            $imgSource= ($img == NULL) ? base_url('/assets/img/profile/' . $fm . ".png") : $img ;
+                            $imgSource= ($img == NULL) ? $fm . ".png" : $img ;
 
-                            echo $imgSource;
+                            echo base_url('/assets/img/profile/').$imgSource;
 
                             ?>" width="300px" height="300px">
                         </div>
                         <div class="pull-right">
+                          <a class="btn btn-danger btn-sm"  href="<?php echo site_url('users/edit_photo_profile/TRUE') ?>">Reset</a>
                           <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#My_photo">
                             Change
                           </button>
@@ -39,25 +40,25 @@
                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                   <h4 class="modal-title" id=""></h4>
                                 </div>
+                                <form action="http://localhost/project_web/users/edit_photo_profile" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                                 <div class="modal-body">
                                   <div class="col-sm-12">
 
-                                  <div class="form-horizontal">
                                     <div class="form-group">
                                       <label for="Potos">Mai Potos</label>
-                                      <input type="file" placeholder="" name="file_photo" id="photo_file">
+                                      <input type="file" placeholder="" name="file_name" id="photo_file">
                                       <p class="help-block">Pake file aje.</p>
                                     </div>
                                     <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="" name="url_photo" id="url_file" multiple>
+                                      <input type="text" class="form-control" placeholder="" name="file_url" id="url_file" multiple>
                                       <p class="help-block">Gapunya imeg pake url aje.</p>
                                     </div>
-                                  </div>
                                 </div>
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-danger" data-dismiss="modal">Kensel</button>
-                                  <button type="button" class="btn btn-primary" onclick="changeImage()" data-dismiss="modal">Sep</button>
+                                  <button type="button" class="btn btn-primary" onclick="changeImage()" id="buttonSubmit">Sep</button>
+                                </form>
                                 </div>
                               </div>
                             </div>
@@ -74,6 +75,9 @@
                               <a href="#" class="fa fa-pencil-square-o"></a>
                             </p>
                             <hr>
+                            <h3><strong>E-mail</strong></h3>
+                            <p><?php echo $this->session->userdata['user']['email']; ?></p>
+                            <hr>
                             <h3><strong>Gender</strong></h3>
                             <p>
                               <?php
@@ -85,33 +89,28 @@
                               ?>
                             </p>
                             <hr>
-                            <h3><strong>E-mail</strong></h3>
-                            <p><?php echo $this->session->userdata['user']['email']; ?></p>
                             <h3><strong>Last Logout</strong></h3>
                             <p><?php echo date_format(date_create($this->session->userdata['user']['last_log']),"D,d m Y") ?></p>
                             <p><?php echo date_format(date_create($this->session->userdata['user']['last_log']),"H:i A") ?></p>
                             <hr>
                             <div class="text-center">
-                              <h5><a href="#"><strong><u>Change Profile</u></strong></a></h5>
+                              <h5><a href="#"><strong><u>Setting Profile</u></strong></a></h5>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-          <!-- <div class="group">
-            <div class="col-md-3">
-              <div class="list-group">
-                <a href="#" class="btn list-group-item"><h4>Profile settings</h4></a>
-                <a href="#" class="btn list-group-item"><h4>My post</h4></a>
-                <a href="#" class="btn list-group-item"><h4>Morbi leo risus</h4></a>
-              </div>
-            </div> -->
             <div class="col-lg-8">
               <h2>My Post</h2>
               <div class="hline"></div>
               <div id="my_post">
+                <?php if ($my_post == NULL): ?>
+                  <div class="text-center">
+                    <h1><i class="fa fa-question"></i></h1>
+                    <label>No Abel Eni Pos.</label>
+                  </div>
+                <?php else: ?>
                 <?php foreach ($my_post as $lol_post): ?>
                   <div class="row">
                     <div class="col-lg-12">
@@ -149,6 +148,7 @@
                   <!-- /.row -->
                   <hr>
                 <?php endforeach; ?>
+              <?php endif; ?>
               <!-- End of load more -->
               </div>
             </div>
@@ -159,42 +159,39 @@
 
 <?php $this->load->view('footer'); ?>
 <script type="text/javascript">
+$(document).ready(function() {
+  $("#photo_file").change(function() {
+    /* Act on the event */
+    if ($("#photo_file").val() != null || $("#photo_file").val() != "") {
+      $("#buttonSubmit").attr('type', 'submit');
+    }
+  });
+});
 function changeImage() {
-  var file = $("#photo_file");
-  var items;
-  var fileName;
-  // if (file != null) {
-  //   items = file[0].files;
-  //   fileName = items[0].name;
-  // }
-
   var url = $("#url_file").val();
 
-  var photo = (file == null) ? url : fileName ;
-
-  var use_url = (url == null) ? "<?php echo base_url('assets/img/') ?>" + fileName : url ;
-  $("#my_foto").attr('src', use_url );
-  $.ajax({
-    url     : "<?php echo site_url('users/edit_photo_profile') ?>",
-    type    : "POST",
-    dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
-    data    : {
-      "file_name" : photo
-    },
-    success : function () {
+  if (url != null) {
+    $("#my_foto").attr('src', url);
+    $.post("<?php echo site_url('users/edit_photo_profile') ?>",
+    {
+      "file_url" : url
     }
-    })
-  .done(function() {
-    console.log("success");
-  })
-  .fail(function() {
-    console.log("error");
-  })
-  .always(function() {
-    console.log("complete");
+  );
+  }
+}
+
+function response(id, value) {
+  $.post("<?php echo site_url('post/response') ?>", {
+    "intIdPost" : id,
+    "response"  : value
+  },
+  function(data) {
+    /*optional stuff to do after success */
+    data = JSON.parse(data);
+    dislike = (data.dislike == null) ? 0 : data.dislike;
+    like = (data.likes == null) ? 0 : data.likes;
+    $("#post_" + id + "_like").html(" " + like);
+    $("#post_" + id + "_dislike").html(" " + dislike);
   });
-
-
-
 }
 </script>
