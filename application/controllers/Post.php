@@ -127,11 +127,11 @@ class Post extends CI_Controller{
 
       $img         = $comment['image_profile'];
 
-      $imgLower    = strtolower($imgSource);
-
       $fm          = ($comment['gender'] == 1) ? "male" : "female" ;
 
       $imgSource   = ($img == NULL) ? $fm.".png" : $img ;
+
+      $imgLower    = strtolower($imgSource);
 
       $imageUrl    = (strstr($imgLower,"http://") || strstr($imgLower,"https://")) ? '' : base_url('/assets/img/profile/');
 
@@ -141,7 +141,6 @@ class Post extends CI_Controller{
 
       echo "<div class='alert alert-success'>";
       echo "<img width='20px' height='20px' class='img-circle' src='"
-      .base_url('assets/img/profile/')
       .$imgSource
       ."'><div class='label label-$genderLabel'>
       ";

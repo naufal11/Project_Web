@@ -126,7 +126,8 @@ class Users extends CI_Controller{
   public function edit_photo_profile( $remove = FALSE )
   {
     $intIdUser = $this->session->userdata['user']['intIdUser'];
-    $data['image_profile'] = (!$remove) ? $this->get_file_name() : NULL;
+    $nameFile = $this->get_file_name();
+    $data['image_profile'] = (!$remove) ? $nameFile : NULL;
 
     $this->session->userdata['user']['image_profile'] = $data['image_profile'];
     $this->db->where('intIdUser', $intIdUser)

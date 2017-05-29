@@ -30,9 +30,8 @@
             $fm = ($this->session->userdata['user']['gender'] == 1) ? "male" : "female" ;
 
             $imgSource= ($img == NULL) ? $fm.".png" : $img ;
+
             $imgLower = strtolower($imgSource);
-
-
             $imageUrl = (strstr($imgLower,"http://") || strstr($imgLower,"https://")) ? '' : base_url('/assets/img/profile/');
 
             echo $imageUrl.$imgSource;
