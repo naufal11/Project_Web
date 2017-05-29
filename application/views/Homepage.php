@@ -62,8 +62,8 @@ function response(id, value) {
   function(data) {
     /*optional stuff to do after success */
     data    = JSON.parse(data);
-    dislike = (data.dislike = = null) ? 0 : data.dislike;
-    like    = (data.likes   = = null) ? 0 : data.likes;
+    dislike = (data.dislike == null) ? 0 : data.dislike;
+    like    = (data.likes   == null) ? 0 : data.likes;
     $("#post_" + id + "_like").html(" " + like);
     $("#post_" + id + "_dislike").html(" " + dislike);
   });
