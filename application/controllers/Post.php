@@ -127,15 +127,15 @@ class Post extends CI_Controller{
 
       $img         = $comment['image_profile'];
 
-      $imgSource   = ($img == NULL) ? $fm.".png" : $img ;
-
       $imgLower    = strtolower($imgSource);
+
+      $fm          = ($comment['gender'] == 1) ? "male" : "female" ;
+
+      $imgSource   = ($img == NULL) ? $fm.".png" : $img ;
 
       $imageUrl    = (strstr($imgLower,"http://") || strstr($imgLower,"https://")) ? '' : base_url('/assets/img/profile/');
 
       $imgSource   = $imageUrl.$imgSource;
-
-      $fm          = ($comment['gender'] == 1) ? "male" : "female" ;
 
       $genderLabel = ($comment['gender'] == '1') ? "primary" : "danger" ;
 

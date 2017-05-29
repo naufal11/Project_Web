@@ -75,7 +75,6 @@ $(document).ready(function() {
   $(window).scroll(function() {
     /* Act on the event */
     if ( $(window).scrollTop() >= $(document).height() - $(window).height() ) {
-
       loadMore();
     }
   });
