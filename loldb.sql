@@ -27,11 +27,15 @@ CREATE TABLE `lol_comments` (
   `comment` text NOT NULL,
   `dtmDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`intComments`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `lol_comments` */
 
 LOCK TABLES `lol_comments` WRITE;
+
+insert  into `lol_comments`(`intComments`,`intIdPost`,`intIdUser`,`comment`,`dtmDate`) values 
+(1,5,3,'hei','2017-05-29 09:05:57'),
+(2,5,3,'bisa nda ya?','2017-05-29 09:29:14');
 
 UNLOCK TABLES;
 
@@ -104,7 +108,7 @@ CREATE TABLE `lol_user` (
   `gender` tinyint(1) NOT NULL,
   `isActive` tinyint(1) DEFAULT NULL,
   `last_log` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `image_profile` varchar(75) DEFAULT NULL,
+  `image_profile` varchar(200) DEFAULT NULL,
   `bio` text,
   PRIMARY KEY (`intIdUser`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
@@ -114,7 +118,7 @@ CREATE TABLE `lol_user` (
 LOCK TABLES `lol_user` WRITE;
 
 insert  into `lol_user`(`intIdUser`,`username`,`firstname`,`lastname`,`email`,`password`,`gender`,`isActive`,`last_log`,`image_profile`,`bio`) values 
-(3,'admin','admin','a','admin@gmail.com','4297f44b13955235245b2497399d7a93',1,0,'2017-05-25 18:56:59',NULL,'ane cuma bio'),
+(3,'admin','admin','a','admin@gmail.com','4297f44b13955235245b2497399d7a93',1,1,'2017-05-29 14:53:43','https://miscmedia-9gag-fun.9cache.com/images/thumbnail-facebook/1481537858.9056_aZAvYJ_n.jpg','ane cuma bio'),
 (4,'cukai','cuk','ai','cukai@gmail.com','4297f44b13955235245b2497399d7a93',1,0,'2017-05-25 18:57:09',NULL,'bukan bio biasa'),
 (5,'KUy76','As','em','asemjawa@gmail.com','f26d9bf4d4af8870fc1def217c8d1ae7',1,0,'2017-05-25 00:00:00',NULL,NULL),
 (6,'kuya','kuyaa','ya22','kuya@gmail.com','4297f44b13955235245b2497399d7a93',1,1,'2017-05-28 17:04:54','bcd884128ba2896d2b17c239408fae98.png',NULL),
