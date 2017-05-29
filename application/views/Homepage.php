@@ -126,7 +126,7 @@ function load_comments(ID, id_ = "") {
     "intIdPost" : ID,
     "comment"   : commentText
   });
-  id_.value = "";
+  // id_.value = "";
 }
 
 </script>

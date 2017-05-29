@@ -20,9 +20,11 @@
 
                             $fm = ($this->session->userdata['user']['gender'] == 1) ? "male" : "female" ;
 
-                            $imgSource= ($img == NULL) ? $fm . ".png" : $img ;
+                            $imgSource = ($img == NULL) ? $fm . ".png" : $img ;
 
-                            echo base_url('/assets/img/profile/').$imgSource;
+                            $url = (strstr(strtolower($imgSource),"http://") || strstr(strtolower($imgSource),"https://")) ? '' : base_url('/assets/img/profile/');
+
+                            echo $url.$imgSource;
 
                             ?>" width="300px" height="300px">
                         </div>
