@@ -127,7 +127,10 @@
                   <div class="row">
                     <div class="col-md-7">
                       <a href="#">
-                        <img class="img-responsive" src="<?php echo base_url('assets/upload/').$lol_post['file'] ?>" alt="<?php echo $lol_post['mark'] ?>">
+                        <img class="img-responsive" src="<?php 
+                        $url = (strstr($lol_post['file'],'https://') || strstr($lol_post['file'],'http://') ) ? '' : base_url('assets/upload/') ;
+                         echo $url.$lol_post['file']
+                        ?>" alt="<?php echo $lol_post['mark'] ?>">
                       </a>
                     </div>
                     <div class="col-md-5">

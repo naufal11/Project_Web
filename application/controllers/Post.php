@@ -120,7 +120,9 @@ class Post extends CI_Controller{
 
     $data      = $this->db->where('intIdPost', $intIdPost)
     ->join("lol_user","lol_user.intIdUser = lol_comments.intIdUser")
+    ->order_by('lol_comments.dtmDate',"asc")
     ->get('lol_comments')->result_array();
+
 
     echo "<p>";
     foreach ($data as $comment) {
