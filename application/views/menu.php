@@ -20,7 +20,7 @@
             <li class="<?php if($menu == 'timeline'){ echo 'active'; } ?>"><a href="<?php echo site_url('home/') ?>">TAIMLEN</a></li>
             <li class="<?php if($menu == 'my_post'){ echo 'active'; } ?>"><a href="<?php echo site_url('home/my_post') ?>">MAI POS</a></li>
 
-            <li class="dropdown user user-menu">
+            <li class="dropdown user user-menu" style="padding-top:-105px">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?php echo base_url('/assets/user.png') ?>" class="user-image img-circle" style="width: 40px; height: 40px;" alt="User Image">
               <span class="hidden-xs"> <?php echo $this->session->userdata['user']['username']; ?></span>
